@@ -10,14 +10,19 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.12.0",
     "@nuxthub/core": "^0.6.11",
     "@nuxtjs/i18n": "^8.3.1",
     "@pinia/nuxt": "^0.5.1",
     "@vueuse/core": "^10.10.0",
     "@vueuse/nuxt": "^10.10.0",
+    "dotenv": "^16.4.5",
+    "h3-zod": "^0.5.3",
     "nuxt": "^3.11.2",
+    "openai": "^4.49.1",
     "vue": "^3.4.27",
-    "vue-router": "^4.3.2"
+    "vue-router": "^4.3.2",
+    "zod": "^3.23.8"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "devDependencies": {
@@ -28,7 +33,6 @@
     "daisyui": "^4.12.2",
     "dayjs-nuxt": "^2.1.9",
     "happy-dom": "^14.12.0",
-    "nuxt-chatgpt": "^0.2.3",
     "nuxt-file-storage": "^0.2.6",
     "nuxt-icon": "^0.6.10",
     "playwright-core": "^1.44.1",

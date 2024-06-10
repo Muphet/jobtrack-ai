@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  ssr: false,
   modules: [
     "@nuxthub/core",
     "@nuxtjs/i18n",
@@ -11,15 +12,14 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "dayjs-nuxt",
     "nuxt-file-storage",
-    "nuxt-chatgpt"
   ],
-  chatgpt: {
-    apiKey: "sk-proj-bUFFMuWCCtZZupYtb3EET3BlbkFJTB4fGNmYe8CiiI15b2dm"
-  },
   hub: {
     database: true
   },
   fileStorage: {
     mount: ""
+  },
+  imports: {
+    dirs: ["types/*.ts", "stores/*.js", "types/**/*.ts"]
   }
 })
