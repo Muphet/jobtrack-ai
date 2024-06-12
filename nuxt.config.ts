@@ -19,6 +19,9 @@ export default defineNuxtConfig({
   fileStorage: {
     mount: ""
   },
+  colorMode: {
+    classSuffix: ""
+  },
   imports: {
     dirs: ["types/*.ts", "stores/*.js", "types/**/*.ts"]
   }

@@ -17,9 +17,9 @@
     <td>
       {{ item.position }}
       <br />
-      <span class="badge badge-ghost badge-sm">{{ item.tag }}</span>
+      <span class="badge badge-ghost badge-sm" v-if="item.tag">{{ item.tag }}</span>
     </td>
-    <td>{{item.salary}}</td>
+    <td>{{item.salary == 0 ? 'TBD' : item.salary}}</td>
     <td>{{ $dayjs(item.time).utc().toString() }}</td>
     <th>
       <div class="badge" :class="badgeColors[item.status]">{{ item.status }}</div>
@@ -28,6 +28,8 @@
 </template>
 
 <script lang="ts" setup>
+import type { Job } from '~/types/Job';
+
 const dayjs = useDayjs()
 dayjs.locale('en')
 const badgeColors = {
