@@ -13,9 +13,6 @@ export default defineNuxtConfig({
     "dayjs-nuxt",
     "nuxt-file-storage",
   ],
-  hub: {
-    database: true
-  },
   fileStorage: {
     mount: ""
   },
