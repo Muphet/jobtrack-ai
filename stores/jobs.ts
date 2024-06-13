@@ -1,19 +1,41 @@
 import { defineStore } from 'pinia'
 import type { Job } from '~/types/Job'
+import {v4 as uuidv4} from 'uuid'
 
 export const useJobsStore = defineStore({
   id: 'JobsStore',
   state: () => ({ 
-    items: <Job[]>[]
+    items: <Job[]>[],
+    showContext: false,
+    contextData: {
+      top: 0,
+      left: 0,
+      item: <Job>{}
+    }
   }),
   getters: {
     getJob: (state) => {
       return (id: string) => state.items.find((el) => el.id === id)
     },
-    getAllJobs: (state) => state.items
+    getAllJobs: (state) => state.items,
+    getShowContext: (state) => state.showContext,
+    getContextData: (state) => readonly(state.contextData)
   },
   actions: {
-    addJob(newJob:Job) {
+    addJob({
+      name = 'company 1', 
+      location = 'location', 
+      position = 'position', 
+      tag = null, 
+      salary = 0, 
+      contract = 'permanent' as const, 
+      time = new Date().toString(),
+      status = 'applied' as const
+    }) {
+      let id = uuidv4() as string;
+      let newJob:Job = {
+        id, name, location, position, tag, salary, contract, time, status
+      }
       this.items = [...this.items, newJob]
     },
     removeJob(id:string) {
@@ -22,6 +44,21 @@ export const useJobsStore = defineStore({
     editJob(job:Job) {
       const idx = this.items.findIndex(val => val.id === job.id);
       this.items[idx] = job
+    },
+    openContext(evt:any, item:Job) {
+      this.contextData = {
+        top: evt.pageY || evt.clientY,
+        left: evt.pageX || evt.clientX,
+        item
+      }
+      this.showContext = true
+    },
+    closeContext(){
+      // reset
+      this.showContext = false
+      this.contextData.top = 0
+      this.contextData.left = 0
+      this.contextData.item = <Job>{}
     }
   }
 })
