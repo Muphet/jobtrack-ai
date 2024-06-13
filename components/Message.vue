@@ -1,5 +1,5 @@
 <template>
-  <div class="chat chat-start">
+  <div class="chat" :class="from === 'AI' ? 'chat-start' : 'chat-end'">
     <div class="chat-image avatar">
       <div class="w-10 rounded-full">
         <img alt="Tailwind CSS chat bubble component"
@@ -7,10 +7,9 @@
       </div>
     </div>
     <div class="chat-header">
-      {{ from }}
-      <time class="text-xs opacity-50">Execution time: 0.122ms</time>
+      <span v-if="from">{{ from }}</span>
     </div>
-    <div class="chat-bubble chat-bubble-accent" v-html="text"></div>
+    <div class="chat-bubble" :class="accent" v-html="text"></div>
   </div>
 </template>
 
@@ -18,11 +17,15 @@
 defineProps({
   from: {
     type: String,
-    required: true
+    required: false
   },
   text: {
     type: String,
     required: true
+  },
+  accent: {
+    type: String,
+    required: false
   }
 })
 </script>

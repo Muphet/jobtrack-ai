@@ -17,13 +17,16 @@ export const useJobsStore = defineStore({
     getJob: (state) => {
       return (id: string) => state.items.find((el) => el.id === id)
     },
+    findByName: (state) => {
+      return (name: string) => state.items.find(el => el.name.toLowerCase().includes(name.toLowerCase()))
+    },
     getAllJobs: (state) => state.items,
     getShowContext: (state) => state.showContext,
     getContextData: (state) => readonly(state.contextData)
   },
   actions: {
     addJob({
-      name = 'company 1', 
+      name = '', 
       location = 'location', 
       position = 'position', 
       tag = null, 
@@ -33,6 +36,7 @@ export const useJobsStore = defineStore({
       status = 'applied' as const
     }) {
       let id = uuidv4() as string;
+      if(name === '') name = `company ${this.items.length}`
       let newJob:Job = {
         id, name, location, position, tag, salary, contract, time, status
       }

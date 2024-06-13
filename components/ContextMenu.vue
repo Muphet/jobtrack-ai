@@ -7,7 +7,7 @@
     <div class="absolute menu bg-base-200 w-56 rounded-box" :style="style">
       <li class="menu-title">{{ item.name }}</li>
       <li><a>Edit</a></li>
-      <li class="text-error"><a>Delete</a></li>
+      <li @click="deleteJob" class="text-error"><a>Delete</a></li>
     </div>
   </div>
 </template>
@@ -17,6 +17,7 @@ import { useJobsStore, type Job } from '#imports';
 const store = useJobsStore()
 
 const {getShowContext} = storeToRefs(store)
+
 const item = computed(() => {
   return store.getContextData.item
 })
@@ -37,5 +38,8 @@ const style = computed(() => {
 })
 const close = () => {
   store.closeContext()
+}
+const deleteJob = () => {
+  store.removeJob(item.value.id)
 }
 </script>

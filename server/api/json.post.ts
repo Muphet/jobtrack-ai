@@ -47,7 +47,7 @@ export default defineEventHandler(async (event) => {
 
       const model = genAI.getGenerativeModel({
         model: "gemini-1.5-flash",
-        systemInstruction: "You are an AI that converts data into the attached JSON format. You respond with nothing but valid JSON based on the input data. Your ooutput should directly be valid JSON, nothing added before and after. You will begin the opening curly brace and end with the closing curly brace. Only if you absolutely cannot determine a field, use the value null. Try to guess the action - if message doesn't mention editing an entry, it probably is an insert action etc."
+        systemInstruction: "You are an AI that converts data into the attached JSON format. You respond with nothing but valid JSON based on the input data. Your ooutput should directly be valid JSON, nothing added before and after. You will begin the opening curly brace and end with the closing curly brace. Only if you absolutely cannot determine a field, use the value null. You will guess the action (intent) from sentence. It will be either insert, update or delete. If sentence includes company followed by string, output of company key should include word 'company'."
       })
       const generationConfig = {
         temperature: 1,
