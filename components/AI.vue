@@ -78,7 +78,6 @@ const process = async (e: any) => {
           messages.value = [...messages.value, {by: 'AI', message: `Updating ${item.name}'s values.`, accent: 'chat-bubble-accent'}]
           item = {
             ...item,
-            name: company ?? item.name,
             location: location ?? item.location,
             position: position ?? item.position,
             tag: level ?? item.tag,
