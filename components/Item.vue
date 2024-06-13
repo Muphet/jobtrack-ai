@@ -1,5 +1,5 @@
 <template>
-  <tr class="cursor-pointer hover:bg-base-200">
+  <tr @contextmenu.prevent="openmenu" class="cursor-pointer hover:bg-base-200">
     <td>
       <div class="flex items-center gap-3">
         <div class="avatar">
@@ -29,6 +29,8 @@
 
 <script lang="ts" setup>
 import type { Job } from '~/types/Job';
+import { useJobsStore } from '#imports';
+const store = useJobsStore()
 
 const dayjs = useDayjs()
 dayjs.locale('en')
@@ -39,7 +41,11 @@ const badgeColors = {
   "accepted": "badge-success"
 }
 
-defineProps<{
+const props = defineProps<{
   item: Job
 }>()
+
+const openmenu = (event:any) => {
+  store.openContext(event, props.item)
+}
 </script>
