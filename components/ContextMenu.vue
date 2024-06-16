@@ -6,7 +6,7 @@
   >
     <div class="absolute menu bg-base-200 w-56 rounded-box" :style="style">
       <li class="menu-title">{{ item.name }}</li>
-      <li><a>Edit</a></li>
+      <li @click="editJob"><a>Edit</a></li>
       <li @click="deleteJob" class="text-error"><a>Delete</a></li>
     </div>
   </div>
@@ -41,5 +41,8 @@ const close = () => {
 }
 const deleteJob = () => {
   store.removeJob(item.value.id)
+}
+const editJob = () => {
+  store.setEditing(item.value.id)
 }
 </script>

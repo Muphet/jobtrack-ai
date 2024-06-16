@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@nuxtjs/color-mode",
     "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
     "@nuxtjs/tailwindcss",
     "@nuxt/test-utils/module",
     "nuxt-icon",

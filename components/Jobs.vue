@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <Item v-for="i in filtered" :key="i.id" :item="i"/>
+        <Item v-for="i in filtered" :key="i.id" :item="i" :ref="`job-${i.id}`"/>
       </tbody>
     </table>
   </div>

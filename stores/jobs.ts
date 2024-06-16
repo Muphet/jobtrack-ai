@@ -4,6 +4,10 @@ import {v4 as uuidv4} from 'uuid'
 
 export const useJobsStore = defineStore({
   id: 'JobsStore',
+  persist: {
+    storage: persistedState.localStorage,
+    paths: ['items']
+  },
   state: () => ({ 
     items: <Job[]>[],
     showContext: false,
@@ -11,7 +15,8 @@ export const useJobsStore = defineStore({
       top: 0,
       left: 0,
       item: <Job>{}
-    }
+    },
+    editing: ""
   }),
   getters: {
     getJob: (state) => {
@@ -63,6 +68,18 @@ export const useJobsStore = defineStore({
       this.contextData.top = 0
       this.contextData.left = 0
       this.contextData.item = <Job>{}
+    },
+    reset() {
+      this.showContext = false
+      this.contextData = {
+        top:0,
+        left:0,
+        item: <Job>{}
+      }
+    },
+    setEditing(id:string) {
+      this.editing = id
+      this.reset()
     }
   }
 })
