@@ -28,7 +28,6 @@ const store = useJobsStore()
 const aiWorking = ref(false)
 const actionInput = ref("")
 const lastInput = ref("")
-const collapsed = ref(true)
 const isTyping = ref(false)
 const messages = ref<Message[]>([])
 const process = async (e: any) => {

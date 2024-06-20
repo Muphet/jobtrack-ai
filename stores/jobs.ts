@@ -48,13 +48,16 @@ export const useJobsStore = defineStore({
       this.items = [...this.items, newJob]
     },
     removeJob(id:string) {
+      if(!id) return;
       this.items = this.items.filter(el => el.id !== id)
     },
     editJob(job:Job) {
+      if(!job) return;
       const idx = this.items.findIndex(val => val.id === job.id);
       this.items[idx] = job
     },
     openContext(evt:any, item:Job) {
+      if(!evt || !item) return;
       this.contextData = {
         top: evt.pageY || evt.clientY,
         left: evt.pageX || evt.clientX,
@@ -63,11 +66,7 @@ export const useJobsStore = defineStore({
       this.showContext = true
     },
     closeContext(){
-      // reset
-      this.showContext = false
-      this.contextData.top = 0
-      this.contextData.left = 0
-      this.contextData.item = <Job>{}
+      this.reset()
     },
     reset() {
       this.showContext = false
@@ -78,6 +77,7 @@ export const useJobsStore = defineStore({
       }
     },
     setEditing(id:string) {
+      if(!id) return;
       this.editing = id
       this.reset()
     }
